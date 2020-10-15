@@ -24,7 +24,7 @@ public class DonHangDAO implements ObjectDAO {
 		mapDonHang.put(dh.getId(), dh);
 		try {
 			String sql = "insert into DonHang values (?,?,?,?,?,?,?,?,?,?,?)";
-			Connection connect = ConnectToDatabase.getConnect();
+			Connection connect = ConnectDTB.getConnect();
 			PreparedStatement ppstm = connect.prepareStatement(sql);
 			ppstm.setString(1, dh.getId());
 			ppstm.setString(2, dh.getTenKhachHang());
@@ -52,7 +52,7 @@ public class DonHangDAO implements ObjectDAO {
 		String sql = "update DonHang set Tenkhachhang=?,Danhsachmasanpham=?,Danhsachtensanpham=?,Tongsoluong=?,Tongtien=?,Ngaymua=?,Diachi=?,Sodienthoai=?,Email=?,Tinhtrangdonhang=? where Madonhang=?";
 		Connection connect;
 		try {
-			connect = ConnectToDatabase.getConnect();
+			connect = ConnectDTB.getConnect();
 			PreparedStatement ppstm = connect.prepareStatement(sql);
 			ppstm.setString(1, dh.getTenKhachHang());
 			ppstm.setString(2, dh.getDanhSachMaSanPham());
@@ -78,7 +78,7 @@ public class DonHangDAO implements ObjectDAO {
 		mapDonHang.remove(id);
 		String sql = "delete from DonHang where Madonhang='" + id + "'";
 		try {
-			new ConnectToDatabase().excuteSql(sql);
+			new ConnectDTB().excuteSql(sql);
 		} catch (Exception e) {
 			System.out.println("Hệ thống lỗi vì:" + e.getMessage());
 			return false;
@@ -91,7 +91,7 @@ public class DonHangDAO implements ObjectDAO {
 	public static Map<String, DonHang> layDuLieuTuDatabase() {
 		Map<String, DonHang> map = new HashMap<>();
 		try {
-			ResultSet rs = new ConnectToDatabase().selectData("select * from  DonHang");
+			ResultSet rs = new ConnectDTB().selectData("select * from  DonHang");
 			while (rs.next()) {
 				String id = rs.getString(1);
 				String tenKhachHang = rs.getString(2);

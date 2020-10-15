@@ -11,4 +11,5 @@ public interface ObjectDAO {
 	default boolean del(String id){
 		return false;
 	}
+//        public boolean edit(Object obj);
 }

@@ -25,7 +25,7 @@ public class ChiTietSanPhamDAO implements ObjectDAO{
 		mapChiTietSanPham.put(ncc.getMasp(), ncc);
 		try {
 			String sql = "insert into Thongtinsanpham values (?,?,?,?,?,?,?)";
-			Connection getConnect = ConnectToDatabase.getConnect();
+			Connection getConnect = ConnectDTB.getConnect();
 			PreparedStatement ppstm = getConnect.prepareStatement(sql);
 			ppstm.setString(1, ncc.getMasp());
 			ppstm.setString(2, ncc.getMoTa1());
@@ -45,7 +45,7 @@ public class ChiTietSanPhamDAO implements ObjectDAO{
 	public static Map<String, ChiTietSanPham> layDuLieuTuDatabase() {
 		Map<String, ChiTietSanPham> map = new HashMap<>();
 		try {
-			ResultSet rs = new ConnectToDatabase().selectData("select * from  Thongtinsanpham");
+			ResultSet rs = new ConnectDTB().selectData("select * from  Thongtinsanpham");
 			while (rs.next()) {
 				String maSanPham = rs.getString(1);
 				String moTa1 = rs.getString(2);
@@ -73,7 +73,7 @@ public class ChiTietSanPhamDAO implements ObjectDAO{
 		String sql = "update Thongtinsanpham set mota1=?,mota2=?,mota3=?,mota4=?,mota5=?,hinhanhchitiet=? where Masanpham=?";
 		Connection getConnect;
 		try {
-			getConnect = ConnectToDatabase.getConnect();
+			getConnect = ConnectDTB.getConnect();
 			PreparedStatement ppstm = getConnect.prepareStatement(sql);
 			ppstm.setString(1, ncc.getMoTa1());
 			ppstm.setString(2, ncc.getMoTa2());
@@ -95,7 +95,7 @@ public class ChiTietSanPhamDAO implements ObjectDAO{
 		mapChiTietSanPham.remove(id);
 		String sql = "delete from Thongtinsanpham where Masanpham='" + id + "'";
 		try {
-			new ConnectToDatabase().excuteSql(sql);
+			new ConnectDTB().excuteSql(sql);
 		} catch (Exception e) {
 			System.out.println("Hệ thống lỗi vì:" + e.getMessage());
 			return false;

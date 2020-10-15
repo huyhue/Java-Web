@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -16,7 +18,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import model.ConnectToDatabase;
+import model.ConnectDTB;
 import model.KhachHang;
 
 public class KhachHangDAO implements ObjectDAO {
@@ -30,7 +32,7 @@ public class KhachHangDAO implements ObjectDAO {
     private static Map<String, KhachHang> loadData() {
         Map<String, KhachHang> mapTemp = new HashMap<>();
         try {
-            ResultSet rs = new ConnectToDatabase().selectData("select * from TaiKhoan");
+            ResultSet rs = new ConnectDTB().selectData("select * from TaiKhoan");
             while (rs.next()) {
                 String taiKhoan = rs.getString(1);
                 String matKhau = rs.getString(2);
@@ -70,7 +72,7 @@ public class KhachHangDAO implements ObjectDAO {
         KhachHang kh = (KhachHang) obj;
         mapKhachHang.put(kh.getTaiKhoan(), kh);
         String sql = "insert into TaiKhoan values (?,?,?,?,?,?,?,?,?,?)";
-        Connection connect = ConnectToDatabase.getConnect();
+        Connection connect = ConnectDTB.getConnect();
         try {
             PreparedStatement ppstm = connect.prepareStatement(sql);
             ppstm.setString(1, kh.getTaiKhoan());
@@ -81,7 +83,7 @@ public class KhachHangDAO implements ObjectDAO {
             ppstm.setString(6, kh.getEmail());
             ppstm.setString(7, kh.getNgaySinh());
             ppstm.setString(8, kh.getDiaChi());
-            ppstm.setString(9, kh.getSoLuongMua());
+            ppstm.setString(9, kh.getSoLuotMua());
             ppstm.setString(10, kh.getRole());
             ppstm.executeUpdate();
             return true;
@@ -95,7 +97,7 @@ public class KhachHangDAO implements ObjectDAO {
     public boolean del(String id) {
         mapKhachHang.remove(id);
         try {
-            new ConnectToDatabase().excuteSql("delete from TaiKhoan where taikhoan='" + id + "'");
+            new ConnectDTB().excuteSql("delete from TaiKhoan where taikhoan='" + id + "'");
             return true;
         } catch (Exception e) {
             System.out.println("error when delete customer :" + e.getMessage());
@@ -109,7 +111,7 @@ public class KhachHangDAO implements ObjectDAO {
         mapKhachHang.replace(id, kh);
         String sql = "update taikhoan set Tenkhachhang=?,Matkhau=?,Gioitinh=?,Sodienthoai=?,Email=?,Ngaysinh=?,Diachi=?,Soluotmua=?,Role=? where Tentaikhoan='"
                 + id + "'";
-        Connection connect = ConnectToDatabase.getConnect();
+        Connection connect = ConnectDTB.getConnect();
         try {
             PreparedStatement ppstm = connect.prepareStatement(sql);
             ppstm.setString(1, kh.getTen());
@@ -119,7 +121,7 @@ public class KhachHangDAO implements ObjectDAO {
             ppstm.setString(5, kh.getEmail());
             ppstm.setString(6, kh.getNgaySinh());
             ppstm.setString(7, kh.getDiaChi());
-            ppstm.setString(8, kh.getSoLuongMua());
+            ppstm.setString(8, kh.getSoLuotMua());
             ppstm.setString(9, kh.getRole());
             ppstm.setString(10, id);
             ppstm.executeUpdate();
@@ -179,6 +181,7 @@ public class KhachHangDAO implements ObjectDAO {
         }
         return false;
     }
+ 
 
     public static void main(String[] args) {
 //        System.out.println(new KhachHangDAO().passwordRecovery("huyhue", "tpgiahuy5@gmail.com"));

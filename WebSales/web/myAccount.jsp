@@ -1,6 +1,7 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="model.ConnectDTB"%>
 <%@page import="model.KhachHang"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -71,39 +72,22 @@
                 <!-- header-bottom -->
             <jsp:include page="header/header-bottom.jsp"></jsp:include>
                 <!-- header-bottom -->
-                <div class="content">
-                    <div class="account-in">
-                        <h2>Welcome to <%  if (kh != null) {
-                                out.print(kh.getTen());
-                            }
+               
+                <h1 style="margin: 60px;" >Welcome to <%  if (kh != null) { out.print(kh.getTen());}
             %>. Your role is <% out.print(kh.getRole());%>
-                        </h2>
-                        <div class="col-md-7 account-top">
-                            <form action="Login?action=Login" method="post">
-                                <div> 	
-                                    <span>Username*</span>
-                                    <input type="text" name="username"> 
-                                </div>
-                                <div> 
-                                    <span  class="pass">Password*</span>
-                                    <input type="password" name="password">
-                                </div>				
-                                <input type="submit" value="Login"> 
-                            </form>
-                        </div>
-                        <div class="col-md-5 left-account ">
-                            <a href="single.html"><img class="img-responsive " src="images/ac.jpg" alt=""></a>
-                            <div class="five-in">
-                                <h1>25% </h1><span>discount</span>
-                            </div>
-                            <a href="register.html" class="create">Create an account</a>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="clearfix"> </div>
+                        </h1>
+            <% if (kh.getRole().equals("admin")) { %>
+                    <jsp:include page="showcustomer.jsp" ></jsp:include>     
+               <% } %>
+            <% if (kh.getRole().equals("owner")) { %>
+                    <jsp:include page="showproduct.jsp" ></jsp:include>     
+               <% } %>
+            <% if (kh.getRole().equals("user")) { %>
+                    <jsp:include page="showuser.jsp" ></jsp:include>     
+               <% } %>
+          
+                   
                     </div>	
-
-
-                </div>
                 <!---->
                 <footer>
                 <jsp:include page="footer/footerlevel1.jsp"></jsp:include>

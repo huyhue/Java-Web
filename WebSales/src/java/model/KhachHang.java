@@ -9,13 +9,14 @@ public class KhachHang {
     String email;
     String ngaySinh;
     String diaChi;
-    String soLuongMua;
+    String soLuotMua;
     String role;
+
 
     public KhachHang() {
     }
 
-    public KhachHang(String taiKhoan, String matKhau, String ten, String gioiTinh, String soDienThoai, String email, String ngaySinh, String diaChi, String soLuongMua, String role) {
+    public KhachHang(String taiKhoan, String matKhau, String ten, String gioiTinh, String soDienThoai, String email, String ngaySinh, String diaChi, String soLuotMua, String role) {
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
         this.ten = ten;
@@ -24,10 +25,18 @@ public class KhachHang {
         this.email = email;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
-        this.soLuongMua = soLuongMua;
+        this.soLuotMua = soLuotMua;
         this.role = role;
     }
 
+    public String getSoLuotMua() {
+        return soLuotMua;
+    }
+
+    public void setSoLuotMua(String soLuotMua) {
+        this.soLuotMua = soLuotMua;
+    }
+    
     public String getTaiKhoan() {
         return taiKhoan;
     }
@@ -92,14 +101,6 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
-    public String getSoLuongMua() {
-        return soLuongMua;
-    }
-
-    public void setSoLuongMua(String soLuongMua) {
-        this.soLuongMua = soLuongMua;
-    }
-
     public String getRole() {
         return role;
     }
@@ -107,12 +108,5 @@ public class KhachHang {
     public void setRole(String role) {
         this.role = role;
     }
-
-    @Override
-    public String toString() {
-        return "KhachHang{" + "taiKhoan=" + taiKhoan + ", matKhau=" + matKhau + ", ten=" + ten + ", gioiTinh=" + gioiTinh + ", soDienThoai=" + soDienThoai + ", email=" + email + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", soLuongMua=" + soLuongMua + ", role=" + role + '}';
-    }
     
-
-
 }

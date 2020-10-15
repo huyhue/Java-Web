@@ -1,5 +1,11 @@
+<%@page import="dao.ProductDAO"%>
+<%@page import="model.Product"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%
+    Map<String, Product> mapListProduct = ProductDAO.mapProduct;
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,160 +80,43 @@
                 <div class="content">
 
                     <div class="col-md-9">
-                        <div class="shoe">
+<!--                        <div class="shoe">
                             <img class="img-responsive" src="images/banner.jpg" alt="" >
                             <div class="shop">
                                 <h4>SHOP <span>WOMEN</span></h4>
                                 <p>SHOES FALL 2014</p>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="content-bottom">
                             <h3>Featured products</h3>
                             <div class="bottom-grid">
+                                <%
+                                for (Product sp : mapListProduct.values()) {
+                            %>
+
                                 <div class="col-md-4 shirt">
                                     <div class="bottom-grid-top">
-                                        <a href="single.jsp"><img class="img-responsive" src="images/sh.png" alt="" >
+                                        <a href="single.jsp"><img class="img-responsive" src="<%= sp.getImg() %>" alt="" >
                                             <div class="five">
-                                                <h6 >-50%</h6>
+                                                <a href="XuLyMuaSanPham?maSanPham=<%=sp.getProductID()%>"><h6 class="one" >BUY</h6></a> 
                                             </div>
                                             <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
+                                                <p><%= sp.getProductName() %></p>
+                                                <span>$<%= sp.getPrice() %></span>
                                                 <div class="clearfix"> </div>
-                                            </div></a>
-
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4 shirt">
-                                    <div class="bottom-grid-top">
-                                        <a href="single.html"><img class="img-responsive" src="images/sh2.png" alt="" >
-                                            <div class="five">
-                                                <h6 class="one" >-50%</h6>
                                             </div>
-                                            <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
-                                                <div class="clearfix"> </div>
-                                            </div></a>
-
-
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="col-md-4 shirt">
-                                    <div class="bottom-grid-top">
-                                        <a href="single.html"><img class="img-responsive" src="images/sh1.png" alt="" >
-                                            <div class="five">
-                                                <h6 class="one1" >-50%</h6>
-                                            </div>
-                                            <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
-                                                <div class="clearfix"> </div>
-                                            </div></a>
-
-
-                                    </div>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="bottom-grid">
-                                <div class="col-md-4 shirt">
-                                    <div class="bottom-grid-top">
-                                        <a href="single.html"><img class="img-responsive" src="images/sh2.png" alt="" >
-                                            <div class="five">
-                                                <h6 class="one" >-50%</h6>
-                                            </div>
-                                            <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
-                                                <div class="clearfix"> </div>
-                                            </div></a>
-
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4 shirt">
-                                    <div class="bottom-grid-top">
-                                        <a href="single.html"><img class="img-responsive" src="images/sh3.png" alt="" >
-                                            <div class="five">
-                                                <h6 class="one1">-50%</h6>
-                                            </div>
-                                            <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
-                                                <div class="clearfix"> </div>
-                                            </div></a>
-
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4 shirt">
-                                    <div class="bottom-grid-top">
-                                        <a href="single.html"><img class="img-responsive" src="images/sh4.png" alt="" >
-                                            <div class="five">
-                                                <h6 >-50%</h6>
-                                            </div>
-                                            <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
-                                                <div class="clearfix"> </div>
-                                            </div></a>
-
-
-                                    </div>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="bottom-grid">
-                                <div class="col-md-4 shirt">
-                                    <div class="bottom-grid-top">
-                                        <a href="single.html"><img class="img-responsive" src="images/sh5.png" alt="" >
-                                            <div class="five">
-                                                <h6 class="one1">-50%</h6>
-                                            </div>
-                                            <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
-                                                <div class="clearfix"> </div>
-                                            </div></a>
-
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4 shirt">
-                                    <div class="bottom-grid-top">
-                                        <a href="single.html"><img class="img-responsive" src="images/sh.png" alt="" >
-                                            <div class="five">
-                                                <h6 >-50%</h6>
-                                            </div>
-                                            <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
-                                                <div class="clearfix"> </div>
-                                            </div></a>
-
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4 shirt">
-                                    <div class="bottom-grid-top">
-                                        <a href="single.html"><img class="img-responsive" src="images/sh2.png" alt="" >
-                                            <div class="five">
-                                                <h6 class="one">-50%</h6>
-                                            </div>
-                                            <div class="pre">
-                                                <p>Pure Slim Xe</p>
-                                                <span>$60.00</span>
-                                                <div class="clearfix"> </div>
-                                            </div></a>
-
-
-                                    </div>
-                                </div>
-                                <div class="clearfix"> </div>
+                               
+                            <%} %>
+                                
+                              
+                               
+                               
                             </div>
                         </div>
+                             <div class="col-md-12">
                         <ul class="start">
                             <li><span>1</span></li>
                             <li class="arrow"><a href="#">2</a></li>
@@ -236,6 +125,7 @@
                             <li class="arrow"><a href="#">5</a></li>
                             <li class="arrow"><a href="#">6</a></li>
                         </ul>
+                    </div>
                     </div>
 
                     <div class="col-md-3 col-md">

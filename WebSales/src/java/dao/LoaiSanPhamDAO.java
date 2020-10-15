@@ -18,7 +18,7 @@ public class LoaiSanPhamDAO implements ObjectDAO {
 		mapLoaiSanPham.put(sp.getMaLoai(), sp);
 		try {
 			String sql = "insert into LoaiSanPham values (?,?,?,?)";
-			Connection connect = ConnectToDatabase.getConnect();
+			Connection connect = ConnectDTB.getConnect();
 			PreparedStatement ppstm = connect.prepareStatement(sql);
 			ppstm.setString(1, sp.getMaLoai());
 			ppstm.setString(2, sp.getTenLoai());
@@ -35,7 +35,7 @@ public class LoaiSanPhamDAO implements ObjectDAO {
 	public static Map<String, LoaiSanPham> layDuLieuTuDatabase() {
 		Map<String, LoaiSanPham> map = new HashMap<>();
 		try {
-			ResultSet rs = new ConnectToDatabase().selectData("select * from  LoaiSanPham");
+			ResultSet rs = new ConnectDTB().selectData("select * from  LoaiSanPham");
 			while (rs.next()) {
 				String maLoai = rs.getString(1);
 				String tenLoai = rs.getString(2);
@@ -60,7 +60,7 @@ public class LoaiSanPhamDAO implements ObjectDAO {
 		String sql = "update LoaiSanPham set Tenloai=?,Manhacungcap=?,Mota=? where Maloai=?";
 		Connection connect;
 		try {
-			connect = ConnectToDatabase.getConnect();
+			connect = ConnectDTB.getConnect();
 			PreparedStatement ppstm = connect.prepareStatement(sql);
 			ppstm.setString(1, sp.getTenLoai());
 			ppstm.setString(2, sp.getMaNhaCungCap());
@@ -79,7 +79,7 @@ public class LoaiSanPhamDAO implements ObjectDAO {
 		mapLoaiSanPham.remove(id);
 		String sql = "delete from LoaiSanPham where Maloai='" + id + "'";
 		try {
-			new ConnectToDatabase().excuteSql(sql);
+			new ConnectDTB().excuteSql(sql);
 		} catch (Exception e) {
 			System.out.println("Hệ thống lỗi vì:" + e.getMessage());
 			return false;

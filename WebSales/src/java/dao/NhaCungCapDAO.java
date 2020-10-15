@@ -18,7 +18,7 @@ public class NhaCungCapDAO implements ObjectDAO {
 		mapNhaCungCap.put(ncc.getMaNhaCungCap(), ncc);
 		try {
 			String sql = "insert into [dbo].[NhaCungCap] values (?,?,?,?,?)";
-			Connection connect = ConnectToDatabase.getConnect();
+			Connection connect = ConnectDTB.getConnect();
 			PreparedStatement ppstm = connect.prepareStatement(sql);
 			ppstm.setString(1, ncc.getMaNhaCungCap());
 			ppstm.setString(2, ncc.getTenNhaCungCap());
@@ -36,7 +36,7 @@ public class NhaCungCapDAO implements ObjectDAO {
 	public static Map<String, NhaCungCap> layDuLieuTuDatabase() {
 		Map<String, NhaCungCap> map = new HashMap<>();
 		try {
-			ResultSet rs = new ConnectToDatabase().selectData("select * from  NhaCungCap");
+			ResultSet rs = new ConnectDTB().selectData("select * from  NhaCungCap");
 			while (rs.next()) {
 				String maNhaCungCap = rs.getString(1);
 				String tenNhaCungCap = rs.getString(2);
@@ -62,7 +62,7 @@ public class NhaCungCapDAO implements ObjectDAO {
 		String sql = "update NhaCungCap set Tennhacungcap=?,Diachi=?,Sodienthoai=?,Logo=? where Manhacungcap=?";
 		Connection connect;
 		try {
-			connect = ConnectToDatabase.getConnect();
+			connect = ConnectDTB.getConnect();
 			PreparedStatement ppstm = connect.prepareStatement(sql);
 			ppstm.setString(1, ncc.getTenNhaCungCap());
 			ppstm.setString(2, ncc.getDiaChi());
@@ -82,7 +82,7 @@ public class NhaCungCapDAO implements ObjectDAO {
 		mapNhaCungCap.remove(id);
 		String sql = "delete from NhaCungCap where Manhacungcap='" + id + "'";
 		try {
-			new ConnectToDatabase().excuteSql(sql);
+			new ConnectDTB().excuteSql(sql);
 		} catch (Exception e) {
 			System.out.println("Hệ thống lỗi vì:" + e.getMessage());
 			return false;
