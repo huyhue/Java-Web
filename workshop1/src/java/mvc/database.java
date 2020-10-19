@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mvc;
 
 import java.sql.Connection;
@@ -23,7 +18,7 @@ public class database {
         Connection con = DriverManager.getConnection(connectionUrl);
         return con;
     }
-    public List<magaine> show() throws Exception {
+    public List<magaine> getAll() throws Exception {
         List<magaine> list = new ArrayList<>();
         String sql = "select * from [Magazine_YourID]";
 
@@ -36,13 +31,13 @@ public class database {
                 m.setId(rs.getString("id"));
                 m.setTitle(rs.getString("title"));
                 m.setPublisher(rs.getString("publisher"));
-                m.setPrice(rs.getDouble("price"));
+                m.setPrice(rs.getFloat("price"));
                 list.add(m);
             }
             return list;
         }
     }
-    public boolean addNew(magaine m) throws Exception {
+    public boolean newMagazine(magaine m) throws Exception {
         String sql = "insert into [Magazine_YourID](id, title, publisher,price) " + " values(?,?,?,?);";
         try (
                 Connection conn = openConnection();
@@ -50,7 +45,7 @@ public class database {
             pstmt.setString(1, m.getId());
             pstmt.setString(2, m.getTitle());
             pstmt.setString(3, m.getPublisher());
-            pstmt.setDouble(4, m.getPrice());
+            pstmt.setFloat(4, m.getPrice());
             return pstmt.executeUpdate() > 0;
         }
     }

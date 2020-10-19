@@ -1,3 +1,5 @@
+<%@page import="dao.OrderDAO"%>
+<%@page import="model.Order"%>
 <%@page import="dao.KhachHangDAO"%>
 <%@page import="model.KhachHang"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,6 +10,7 @@
 
 <%
     KhachHang kh = (KhachHang) session.getAttribute("userlogin");
+    Map<String, Order> mapList = OrderDAO.mapOrder;
 %>
 <!DOCTYPE html>
 <html>
@@ -139,61 +142,31 @@
             <div class="row">
                 <h2 class="text-center text-info text-uppercase">Đơn hàng đã đặt của bạn</h2>
 
+                <%
+                    int count = 0;
+                    for (Order o : mapList.values()) {
+                        count++;
+                %>
+                <div class="card border-success bg-danger col-md-4">
+                    <div class="card-header">
+                        <h1 class="card-title">Đơn hàng số <%= count%></h1>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-info">OrderID: <%= o.getOrderID()%></li>
+                            <li class="list-group-item list-group-item-info">ProductID: <%= o.getProductID()%></li>
+                            <li class="list-group-item list-group-item-info">CustomerID: <%= o.getCustomerID()%></li>
+                            <li class="list-group-item list-group-item-info">Date: <%= o.getDate()%></li>
+                            <li class="list-group-item list-group-item-danger">Total Price: <%= o.getTotalPrice()%></li>
+                        </ul>
+                        <a href="" class="card-link">Theo dõi đơn hàng</a>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text text-center"><small>Bạn đã đặt hàng 10 phút trước</small></p>
+                    </div>
+                </div>
+                <%}%>
 
-                <div class="card border-success bg-danger col-md-4">
-                    <div class="card-header">
-                        <h1 class="card-title">Đơn hàng số 1</h1>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-info">OrderID: </li>
-                            <li class="list-group-item list-group-item-info">ProductID: </li>
-                            <li class="list-group-item list-group-item-info">CustomerID: </li>
-                            <li class="list-group-item list-group-item-info">Date: </li>
-                            <li class="list-group-item list-group-item-danger">Total Price: </li>
-                        </ul>
-                        <a href="" class="card-link">Theo dõi đơn hàng</a>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text text-center"><small>Bạn đã đặt hàng 10 phút trước</small></p>
-                    </div>
-                </div>
-                <div class="card border-success bg-danger col-md-4">
-                    <div class="card-header">
-                        <h1 class="card-title">Đơn hàng số 2</h1>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-info">OrderID: </li>
-                            <li class="list-group-item list-group-item-info">ProductID: </li>
-                            <li class="list-group-item list-group-item-info">CustomerID: </li>
-                            <li class="list-group-item list-group-item-info">Date: </li>
-                            <li class="list-group-item list-group-item-success">Total Price: </li>
-                        </ul>
-                        <a href="" class="card-link">Theo dõi đơn hàng</a>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text text-center"><small>Bạn đã đặt hàng 10 phút trước</small></p>
-                    </div>
-                </div>
-                <div class="card border-success bg-danger col-md-4">
-                    <div class="card-header">
-                        <h1 class="card-title">Đơn hàng số 3</h1>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-info">OrderID: </li>
-                            <li class="list-group-item list-group-item-info">ProductID: </li>
-                            <li class="list-group-item list-group-item-info">CustomerID: </li>
-                            <li class="list-group-item list-group-item-info">Date: </li>
-                            <li class="list-group-item list-group-item-danger">Total Price: </li>
-                        </ul>
-                        <a href="" class="card-link">Theo dõi đơn hàng</a>
-                    </div>
-                    <div class="card-footer">
-                        <p class="card-text text-center"><small>Bạn đã đặt hàng 10 phút trước</small></p>
-                    </div>
-                </div>
 
             </div>    
 

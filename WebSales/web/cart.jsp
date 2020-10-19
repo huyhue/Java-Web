@@ -80,6 +80,8 @@
                         <h2 class="text-center">GIỎ HÀNG (2 sản phẩm)</h2>
 			</div>
                 <% KhachHang kh = (KhachHang) session.getAttribute("userlogin");
+                int sum = 0;
+                String sp = "";
                     if (kh != null) {
                         ArrayList<Product> gioHang = new GioHangDAO().getGioHang();
                 %>
@@ -100,7 +102,10 @@
                             <tbody>
                                 <%int count = 0;
                                     for (int i = 0; i < gioHang.size(); i++) {
-                                        count++;%>
+                                        count++;
+                                        sp += gioHang.get(i).getProductName()+", ";
+                                        sum += Integer.parseInt(gioHang.get(i).getPrice())*Integer.parseInt(gioHang.get(i).getSoLuongMua());
+                                %>
                                 <tr>
                                     <th scope="row"><% out.print(count);%></th>
                                     <td><%out.print(gioHang.get(i).getProductID()); %></td>
@@ -120,7 +125,8 @@
                                             </button></a>
                                     </td>
                                 </tr>
-                                <%}  }%>
+                                <%}  GioHangDAO.setTongtien(sum+"");GioHangDAO.setSp(sp);
+}%>
                             </tbody>
                         </table>
                     </div>
@@ -128,11 +134,12 @@
                         <h3 class="text-center text-danger">Tính tiền</h3>
                         <div class="row">
                             <div class="col-md-3"><h5>Tạm tính</h5></div>
-                        <div class="col text-right">600.000đ</div>
+                        <div class="col text-right"><%out.print(sum);%>đ</div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><h4 class="text-warning">Thành tiền:</h4></div>
-                            <div class="col"><h3 class="text-danger text-right"><%= GioHangDAO.tongGiaTienDatHang()%>đ </h3> </br>
+                            <div class="col"><h3 class="text-danger text-right"><%out.print(sum);%>đ </h3> </br>
+
                                 <span class="text-right">(Đã bao gồm VAT nếu có)</span>
                         </div>
                         </div>

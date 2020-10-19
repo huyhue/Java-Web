@@ -2,6 +2,7 @@ package mvc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +15,22 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id"); //lay gia tri
-            String title = request.getParameter("titleAA");
-            String gender = request.getParameter("gender");
+            String title = request.getParameter("title");
+            String publisher = request.getParameter("publisher");
+            String price = request.getParameter("price");
 
-            User user = new User(0, password, name, Boolean.parseBoolean(gender));
+            magaine m = new magaine(id,title,publisher,Float.parseFloat(price));
             try {
                 database dao = new database();
-                if (dao.insertUser(user)) {
-                    System.out.print("New User Inserted!!!");
+                if (!id.isEmpty() && !title.isEmpty()&& !publisher.isEmpty()&& !publisher.isEmpty()) {
+                    dao.newMagazine(m);
+                    System.out.print("New Magazine Inserted!!!");
+                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
                 } else {
                      System.out.print("Fail");
+                     RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+                rd.forward(request, response);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

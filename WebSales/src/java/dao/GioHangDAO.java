@@ -17,20 +17,37 @@ public class GioHangDAO {
     }
 
     public static String getTotalProductOrder() {
-        dsSanPham.clear();
         String sp = "";
         for (Product od : dsSanPham) {
-            sp += od.getProductID() + ", ";
+            sp += od.getProductID() + ",";
         }
         return sp;
     }
 
-    public static String tongGiaTienDatHang() {
+    public String tongGiaTienDatHang() {
         String gia = "0";
         for (Product od : dsSanPham) {
-            gia = Integer.parseInt(od.getPrice())*Integer.parseInt(od.getSoLuongMua()) + Integer.parseInt(gia) + "";
+            gia = Integer.parseInt(od.getPrice()) + Integer.parseInt(gia) + "";
         }
         return gia;
+    }
+    private static String sp;
+    private static String tongtien;
+
+    public static String getSp() {
+        return sp;
+    }
+
+    public static void setSp(String sp) {
+        GioHangDAO.sp = sp;
+    }
+
+    public static String getTongtien() {
+        return tongtien;
+    }
+
+    public static void setTongtien(String tongtien) {
+        GioHangDAO.tongtien = tongtien;
     }
 
     public boolean kiemTraSanPhamCoTrongGioHangChua(String maSanPham) {

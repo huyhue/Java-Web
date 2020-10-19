@@ -3,18 +3,18 @@ package model;
 public class Order {
 
     String orderID;
-    String productID;
     String customerID;
+    String productID;
     String date;
     String totalPrice;
 
     public Order() {
     }
 
-    public Order(String orderID, String productID, String customerID, String date, String totalPrice) {
+    public Order(String orderID, String customerID, String productID, String date, String totalPrice) {
         this.orderID = orderID;
-        this.productID = productID;
         this.customerID = customerID;
+        this.productID = productID;
         this.date = date;
         this.totalPrice = totalPrice;
     }
@@ -59,10 +59,6 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    @Override
-    public String toString() {
-        return "Order [orderID=" + orderID + ", productID=" + productID + ", customerID=" + customerID + ", date="
-                + date + ", totalPrice=" + totalPrice + "]";
-    }
+    
 
 }

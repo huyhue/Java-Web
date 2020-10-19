@@ -1,3 +1,4 @@
+<%@page import="java.util.Set"%>
 <%@page import="dao.KhachHangDAO"%>
 <%@page import="model.KhachHang"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,6 +11,7 @@
     //ArrayList<KhachHang> listCustomer = new KhachHangDAO().getKh(); 
 //    HttpSession session2 = request.getSession();
     Map<String, KhachHang> mapListKhachHang = KhachHangDAO.mapKhachHang;
+    Set<String> setKH = KhachHangDAO.loadRole;
 %>
 <!DOCTYPE html>
 <html>
@@ -76,26 +78,39 @@
                 </h2>
             </div>
             <div class="row">
-                <center>
-                    <a href="customer.jsp?chucNang=Add"><button class="btn btn-sm btn-success" id="Them"><span class="glyphicon glyphicon-plus"></span>  Thêm khách hàng</button></a>
-                </center>
+                <div class="dropdown col-md-4">
+                    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">Chọn vai trò
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <% for (String kh : setKH) {%>
+                        <li><a href="Dropdown?chucNang=KhachHang&role=<%=kh%>"><%=kh%></a></li>
+                            <%} %>			 
+                        <li class="divider"></li>
+                        <li><a href="Dropdown?chucNang=AllKhachHang">Tất cả</a></li>
+                    </ul>
+                </div> 
+                <div class="col-md-4">
+                    <jsp:include page="search/searchTaikhoan.jsp"></jsp:include>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="customer.jsp?chucNang=Add"><button class="btn btn-sm btn-success" id="Them"><span class="glyphicon glyphicon-plus"></span>Thêm khách hàng</button></a>
+                    </div>
+                    <div class="col-md-12">
+                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên</th>
+                                    <th>Tài khoản</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Vai trò</th>
+                                    <th>Xóa</th>
+                                    <th>Sửa</th>
+                                    <th>Thông tin</th>
+                                </tr>
+                            </thead>
 
-                <div>
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Tên</th>
-                                <th>Tài khoản</th>
-                                <th>Số điện thoại</th>
-                                <th>Vai trò</th>
-                                <th>Xóa</th>
-                                <th>Sửa</th>
-                                <th>Thông tin</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
+                            <tbody>
                             <%
                                 int count = 0;
                                 for (KhachHang kh : mapListKhachHang.values()) {

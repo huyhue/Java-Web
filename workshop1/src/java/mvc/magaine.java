@@ -8,15 +8,16 @@ public class magaine {
     private String id;
     private String title;
     private String publisher;
-    private double price;
+    private float price;
 
-    
-    public magaine(String id, String title, String publisher, double price) {
+    public magaine(String id, String title, String publisher, float price) {
         this.id = id;
         this.title = title;
         this.publisher = publisher;
         this.price = price;
     }
+
+    
 
     magaine() {
     }
@@ -45,11 +46,11 @@ public class magaine {
         this.publisher = publisher;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
     

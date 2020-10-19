@@ -39,6 +39,11 @@ public class SearchProcessController extends HttpServlet {
 
         String chucNang = request.getParameter("chucNang");
         // chức năng chọn khách hàng
+        if (chucNang.equals("Account")) {
+            String id = request.getParameter("account");
+//            KhachHang kh = new KhachHangDAO().findAccount(id);
+            response.sendRedirect("customer.jsp?id="+id+"&chucNang=Info");
+        } else // chức năng lọc trả lại sản phẩm cho vào giỏ hàng
         if (chucNang.equals("searchCustomer")) {
             String id = request.getParameter("name");
             KhachHang kh = new KhachHangDAO().find(id);
@@ -59,14 +64,13 @@ public class SearchProcessController extends HttpServlet {
             KhachHang kh = (KhachHang) session.getAttribute("userlogin");
 
             Date today = new Date(System.currentTimeMillis());
-            SimpleDateFormat timeFormat = new SimpleDateFormat("dd/MM/yyyy");
-            String ngayGui = timeFormat.format(today.getTime());
-            Order dh = new Order("DH" + new ProductDAO().random(300) + "", GioHangDAO.getTotalProductOrder(),
-                    kh.getTaiKhoan(), ngayGui, GioHangDAO.tongGiaTienDatHang());
+			SimpleDateFormat timeFormat = new SimpleDateFormat("MM-dd-yyyy");
+			String ngayGui = timeFormat.format(today.getTime());
+			Order dh = new Order("DH" + new ProductDAO().random(300) + "",kh.getTaiKhoan(),  GioHangDAO.getSp(),ngayGui, GioHangDAO.getTongtien());
             try {
                 new OrderDAO().add(dh);
 //				session.removeAttribute("KhachHang");
-                GioHangDAO.dsSanPham.clear();
+				ProductDAO.mapProductOrder.clear();
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Lổi xuất đơn hàng");

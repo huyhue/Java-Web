@@ -1,5 +1,4 @@
 <%@page import="java.sql.ResultSet"%>
-<%@page import="model.ConnectToDatabase"%>
 <%@page import="model.KhachHang"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%

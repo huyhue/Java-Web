@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -24,12 +25,38 @@ import model.KhachHang;
 public class KhachHangDAO implements ObjectDAO {
 
     public static Map<String, KhachHang> mapKhachHang = loadData();
+    public static Set<String> loadRole = loadRole();
 
     public KhachHangDAO() {
-
     }
 
-    private static Map<String, KhachHang> loadData() {
+    public KhachHang findAccount(String id) {
+        return mapKhachHang.get(id);
+    }
+
+    public String getKhachHangName(String id) {
+        return mapKhachHang.get(id).getRole();
+    }
+
+    public Map<String, KhachHang> getSelectKH(String role) {
+        Map<String, KhachHang> res = new HashMap<>();
+        for (KhachHang kh : mapKhachHang.values()) {
+            if (kh.getRole().equals(role)) {
+                res.put(kh.getTaiKhoan(), kh);
+            }
+        }
+        return res;
+    }
+
+    public static Set<String> loadRole() {  //lay id
+        Set<String> KHang = new HashSet<>();
+        for (KhachHang kh : mapKhachHang.values()) {
+            KHang.add(kh.getRole());
+        }
+        return KHang;
+    }
+
+    public static Map<String, KhachHang> loadData() {
         Map<String, KhachHang> mapTemp = new HashMap<>();
         try {
             ResultSet rs = new ConnectDTB().selectData("select * from TaiKhoan");
@@ -181,10 +208,9 @@ public class KhachHangDAO implements ObjectDAO {
         }
         return false;
     }
- 
 
     public static void main(String[] args) {
 //        System.out.println(new KhachHangDAO().passwordRecovery("huyhue", "tpgiahuy5@gmail.com"));
-        System.out.println(loadData());
+//        System.out.println(loadData());
     }
 }
