@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package S1;
 
 import java.awt.Image;
@@ -12,11 +7,12 @@ import javax.swing.JLabel;
 
 public class Main extends javax.swing.JFrame {
 
-    ImageIcon icon1 = new ImageIcon("1.jpg");
+    ImageIcon icon1 = new ImageIcon("Images/1.jpg");
     ImageIcon icon2 = new ImageIcon("Images/2.jpg");
     ImageIcon icon3 = new ImageIcon("Images/3.jpg");
     ImageIcon icon4 = new ImageIcon("Images/4.jpg");
     ImageIcon icon5 = new ImageIcon("Images/5.jpg");
+    
     public Main() {
         initComponents();
         setImagesforButton(jButtonImage1, icon1);
@@ -57,6 +53,7 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Display Image");
 
         jButtonImage1.setPreferredSize(new java.awt.Dimension(75, 75));
         jButtonImage1.addActionListener(new java.awt.event.ActionListener() {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ProductDAO;
+import model.KhachHang;
 import model.Product;
 
 @WebServlet("/Product")
@@ -58,7 +59,7 @@ public class ProductProcessController extends HttpServlet {
         if (chucNang.equals("Add")) {
             String productName = request.getParameter("pdName");
             String price = request.getParameter("price");
-            String producerID = null;
+            String producerID = request.getParameter("owner");;
             String img = request.getParameter("image");
             String productID = "Product" + new ProductDAO().random(9000);
             Product kh = new Product(productID, productName, price, producerID, img);

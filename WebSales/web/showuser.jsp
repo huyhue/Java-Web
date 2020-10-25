@@ -10,7 +10,7 @@
 
 <%
     KhachHang kh = (KhachHang) session.getAttribute("userlogin");
-    Map<String, Order> mapList = OrderDAO.mapOrder;
+    Map<String, Order> mapList = OrderDAO.loadById(kh.getTaiKhoan());
 %>
 <!DOCTYPE html>
 <html>

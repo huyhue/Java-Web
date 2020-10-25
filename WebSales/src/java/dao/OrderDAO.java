@@ -12,7 +12,6 @@ import java.util.Set;
 
 import model.ConnectDTB;
 import model.Order;
-import model.Product;
 
 public class OrderDAO implements ObjectDAO {
 
@@ -101,6 +100,33 @@ public class OrderDAO implements ObjectDAO {
             return null;
         }
         return listOrder;
+    }
+    public static Map<String, Order> loadById(String name) throws Exception {
+        Map<String, Order> listOrder = new HashMap<String, Order>();
+        String sql = "select * from [Order] where CustomerID=?";
+        try (
+                Connection conn = ConnectDTB.getConnect();
+                PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1,name);
+            try (ResultSet rs = pstmt.executeQuery();) {
+                while (rs.next()) {
+                    String orderID = rs.getString(1);
+                String customerName = rs.getString(2);
+                String productName = rs.getString(3);
+                String date = rs.getString(4);
+                String totalPrice = rs.getString(5);
+                listOrder.put(orderID, new Order(orderID, productName, customerName, date, totalPrice));
+                }
+            }
+            return listOrder;
+        }
+    }
+    public static void main(String[] args) throws Exception {
+        Map<String, Order> mapList = loadById("huyhue");
+        for (Order o : mapList.values()) {
+            System.out.println(o.getProductID());
+            System.out.println(o.getCustomerID());
+        }
     }
 
     public boolean edit(Object obj) {

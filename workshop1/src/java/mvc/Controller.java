@@ -22,7 +22,7 @@ public class Controller extends HttpServlet {
             magaine m = new magaine(id,title,publisher,Float.parseFloat(price));
             try {
                 database dao = new database();
-                if (!id.isEmpty() && !title.isEmpty()&& !publisher.isEmpty()&& !publisher.isEmpty()) {
+                if (!id.isEmpty() && !title.isEmpty()&& !publisher.isEmpty()&& !price.isEmpty()) {
                     dao.newMagazine(m);
                     System.out.print("New Magazine Inserted!!!");
                     RequestDispatcher rd = request.getRequestDispatcher("index.jsp");

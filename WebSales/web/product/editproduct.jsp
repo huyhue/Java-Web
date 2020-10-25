@@ -116,6 +116,22 @@
             <div class="form-center">
                 <form  class="form-horizontal" action="../Product?chucNang=Edit&masp=<%=sp.getProductID()%> " method="post">
                     <div class="form-group">
+                        <label class="control-label col-sm-2" for=""><span class=""></span>Mã số sản phẩm:</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="<%=sp.getProductID()%>" name="masp">
+                                </div>
+                                <div class="col-sm-2">
+                                    <p id="icon-cost"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p style="color: red" id="error-cost"></p>	
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-sm-2" for=""><span class=""></span> Tên sản phẩm:</label>
                         <div class="col-sm-10">
                             <div class="row">
@@ -153,6 +169,23 @@
                             <div class="row">
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control"  value="<%=sp.getImg()%>"  name="image" placeholder="Ảnh sản phẩm" id="image">
+                                </div>
+                                <div class="col-sm-2">
+                                    <p id="icon-cost"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p style="color: red" id="error-cost"></p>	
+                            </div>
+                        </div>
+                    </div>  
+                      
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for=""><span class=""></span>Chủ sở hửu sản phẩm:</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control"  value="<%=sp.getProducerID()%>"  name="NSXID">
                                 </div>
                                 <div class="col-sm-2">
                                     <p id="icon-cost"></p>

@@ -187,6 +187,35 @@ public class ProductDAO implements ObjectDAO {
         return listProduct;
     }
 
+    public static Map<String, Product> loadProductById(String name) throws Exception {
+        Map<String, Product> listProduct = new HashMap<String, Product>();
+        String sql = "select * from [Product] where ProducerID=?";
+        try (
+                Connection conn = ConnectDTB.getConnect();
+                PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setString(1, name);
+            try (ResultSet rs = pstmt.executeQuery();) {
+                while (rs.next()) {
+                    String productID = rs.getString(1);
+                    String productName = rs.getString(2);
+                    String price = rs.getString(3);
+                    String producerID = rs.getString(4);
+                    String img = rs.getString(5);
+                    listProduct.put(productID, new Product(productID, productName, price, producerID, img));
+                }
+            }
+            return listProduct;
+        }
+    }
+    public static void main(String[] args) throws Exception {
+        Map<String, Product> mapList = loadProductById("ducanh");
+        for (Product o : mapList.values()) {
+            System.out.println(o.getProductID());
+            System.out.println(o.getPrice());
+            System.out.println(o.getProductName());
+        }
+    }
+
     public boolean edit(Object obj) {
         Product sp = (Product) obj;
         mapProduct.replace(sp.getProductID(), sp);

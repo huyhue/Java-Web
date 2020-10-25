@@ -42,15 +42,24 @@ public class SearchProcessController extends HttpServlet {
         if (chucNang.equals("Account")) {
             String id = request.getParameter("account");
 //            KhachHang kh = new KhachHangDAO().findAccount(id);
-            response.sendRedirect("customer.jsp?id="+id+"&chucNang=Info");
+            response.sendRedirect("customer.jsp?id=" + id + "&chucNang=Info");
         } else // chức năng lọc trả lại sản phẩm cho vào giỏ hàng
         if (chucNang.equals("searchCustomer")) {
             String id = request.getParameter("name");
             KhachHang kh = new KhachHangDAO().find(id);
             ServletContext contextdisable = getServletContext();
             contextdisable.setAttribute("disabledButton", "disabled");
-            session.setAttribute("KhachHang", kh);
-            response.sendRedirect("orderonline.jsp");
+            ServletContext customer = getServletContext();
+            customer.setAttribute("customer", kh);
+            response.sendRedirect("myAccount.jsp");
+        } else // chức năng đổi khách hàng
+        if (chucNang.equals("changeCustomer")) {
+            ServletContext contextdisable = getServletContext();
+            contextdisable.setAttribute("disabledButton", "");
+            ServletContext customer = getServletContext();
+            customer.removeAttribute("customer");
+            ProductDAO.mapProductOrder.clear();
+            response.sendRedirect("myAccount.jsp");
         } else // chức năng lọc trả lại sản phẩm cho vào giỏ hàng
         if (chucNang.equals("Add")) {
             String id = request.getParameter("productID");
@@ -64,25 +73,18 @@ public class SearchProcessController extends HttpServlet {
             KhachHang kh = (KhachHang) session.getAttribute("userlogin");
 
             Date today = new Date(System.currentTimeMillis());
-			SimpleDateFormat timeFormat = new SimpleDateFormat("MM-dd-yyyy");
-			String ngayGui = timeFormat.format(today.getTime());
-			Order dh = new Order("DH" + new ProductDAO().random(300) + "",kh.getTaiKhoan(),  GioHangDAO.getSp(),ngayGui, GioHangDAO.getTongtien());
+            SimpleDateFormat timeFormat = new SimpleDateFormat("MM-dd-yyyy");
+            String ngayGui = timeFormat.format(today.getTime());
+            Order dh = new Order("DH" + new ProductDAO().random(300) + "", kh.getTaiKhoan(), GioHangDAO.getSp(), ngayGui, GioHangDAO.getTongtien());
             try {
                 new OrderDAO().add(dh);
 //				session.removeAttribute("KhachHang");
-				ProductDAO.mapProductOrder.clear();
+                ProductDAO.mapProductOrder.clear();
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Lổi xuất đơn hàng");
             }
             response.sendRedirect("myAccount.jsp");
-        } else // chức năng đổi khách hàng
-        if (chucNang.equals("changeCustomer")) {
-            ServletContext contextdisable = getServletContext();
-            contextdisable.setAttribute("disabledButton", "");
-            session.removeAttribute("KhachHang");
-            ProductDAO.mapProductOrder.clear();
-            response.sendRedirect("orderonline.jsp");
         } else // chức năng xóa sản phẩm trong giỏ hàng
         if (chucNang.equals("delProduct")) {
             String id = request.getParameter("id");

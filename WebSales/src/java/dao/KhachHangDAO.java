@@ -34,6 +34,10 @@ public class KhachHangDAO implements ObjectDAO {
         return mapKhachHang.get(id);
     }
 
+    public KhachHang find(String id) {
+        return mapKhachHang.get(id);
+    }
+
     public String getKhachHangName(String id) {
         return mapKhachHang.get(id).getRole();
     }

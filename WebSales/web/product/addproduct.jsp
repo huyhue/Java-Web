@@ -1,4 +1,5 @@
 
+<%@page import="model.KhachHang"%>
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8"%>
@@ -106,10 +107,26 @@
                 </h2>
                 <hr>
             </div>
-            <div class="">
-            </div>
+            <%  KhachHang kh = (KhachHang) session.getAttribute("userlogin");
+            %>
             <div class="form-center">
                 <form class="form-horizontal" action="../Product?chucNang=Add" name="addcustomer" method="post" id="addproductID">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for=""><span class=""></span> Chủ sản phẩm:</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input type="text" class=" form-control "  value="<%=kh.getTaiKhoan()%>" name="owner">
+                                </div>
+                                <div class="col-sm-2">
+                                    <p id="icon-name"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p style="color: red" id="error-name"></p>	
+                            </div>
+                        </div>
+                    </div>  
                     <div class="form-group">
                         <label class="control-label col-sm-2" for=""><span class=""></span> Tên sản phẩm:</label>
                         <div class="col-sm-10">

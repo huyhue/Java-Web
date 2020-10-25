@@ -1,0 +1,26 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="">
+            <result>login.jsp</result>
+        </action>
+        <action name="login" class="sample.structs2.LoginAction">
+            <result name="success">search.jsp</result>
+            <result name="fail" type="redirect">invalid.jsp</result>
+        </action>
+        <action name="searchLikeLastname" class="sample.structs2.SearchLikeLastnameAction">
+            <result name="success">search.jsp</result>
+        </action>
+        <action name="deleteRecord" class="sample.structs2.DeleteRecordAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchLikeLastname</param>
+                <param name="searchValue">${lastSearchValue}</param>
+            </result>
+            <result name="fail">deleteError.jsp</result>
+        </action>
+    </package>
+</struts>

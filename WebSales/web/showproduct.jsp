@@ -1,3 +1,6 @@
+<%@page import="dao.OrderDAO"%>
+<%@page import="model.Order"%>
+<%@page import="model.KhachHang"%>
 <%@page import="java.util.Set"%>
 <%@page import="dao.ProductDAO"%>
 <%@page import="model.Product"%>
@@ -8,9 +11,12 @@
          pageEncoding="utf-8"%>
 
 <%
-    Map<String, Product> mapListProduct = ProductDAO.mapProduct;
+    KhachHang kh = (KhachHang) session.getAttribute("userlogin");
+    Map<String, Product> mapListProduct = ProductDAO.loadProductById(kh.getTaiKhoan());
 //	Map<String, Producer> mapListProducer = ProducerDAO.mapProducer;
     Set<String> setProducer = ProductDAO.setProducer;
+    ServletContext customer = getServletContext();
+    KhachHang cus = (KhachHang) customer.getAttribute("customer");
 %>
 <!DOCTYPE html>
 <html>
@@ -131,9 +137,79 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
+            <div class="row">
+                <h2>
+                    <h1 class="text-center">Quản lý khách hàng</h1>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <label><strong><span class="glyphicon glyphicon-user"></span>  Nhập tên khách hàng:</strong></label>
+                        <jsp:include page="search/searchcustomer.jsp"></jsp:include>
+                        </div>
+                    <%if (cus != null) { %>
+                    <div class="row">   
+                        <P>Tên tài khoản: <%out.print(cus.getTen()); %></P>
+                        <P>Giới tính: <%out.print(cus.getGioiTinh()); %></P>
+                        <p>Tên khách hàng: <%out.print(cus.getDiaChi()); %></p>
+                        <p>Số điện thoại: <%out.print(cus.getSoDienThoai()); %></p>
+                    </div>
+                    <div class="row">
+                        <a href="Search?chucNang=changeCustomer"><button class="btn btn-sm btn-danger"><i class="fa fa-users" aria-hidden="true"></i>Đổi khách hàng</button></a>
+                    </div>
+                </div>
+
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                        </div>
+                    </div>
+                    <br>
+                    <br>		
+                    <%
+                        Map<String, Product> mapProductOrder = ProductDAO.mapProductOrder;
+                    %>			
+                    <div class="row">
+                        <div class="col-dm-12">
+                            <table id="datatable-buttons" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã đặt hàng</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Ngày mua</th>
+                                        <th>Tổng tiền</th>
+                                    </tr>
+                                </thead>
+                                <%
+                                    Map<String, Order> mapList = OrderDAO.loadById(cus.getTaiKhoan());
+                                %>
+                                <tbody>
+                                    <%
+                                        int c = 0;
+                                        for (Order o : mapList.values()) {
+                                            c++;
+                                    %>
+                                    <tr>
+                                        <td><%=c%></td>
+                                        <td><%=o.getOrderID()%></td>
+                                        <td><%=o.getCustomerID()%></td>
+                                        <td><%=o.getDate()%></td>
+                                        <td><%=o.getTotalPrice()%></td>
+                                    </tr>  
+                                    <%} %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+            </div>
+
+        </div>
     </body>
 
     <!-- jQuery -->
