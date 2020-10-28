@@ -1,7 +1,7 @@
+<%@page import="dao.OrderDAO"%>
+<%@page import="model.Order"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="dao.TraSuaDAO"%>
 <%@page import="dao.ThongKeDAO"%>
-<%@page import="model.TraSua"%>
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -9,7 +9,7 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
-    	<%Map<String,TraSua> mapTS = new HashMap<>();
+    	<%Map<String,Order> mapTS = new HashMap<>();
         		String ok = (String) session.getAttribute("oktuan");
         		String tuan= (String) session.getAttribute("tuan");
         		String thang= (String) session.getAttribute("thangTheoTuan");
@@ -26,9 +26,9 @@
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
 		<% if(mapTS.size()!=0){
-			for(TraSua ts:mapTS.values()){
+			for(Order o :mapTS.values()){
 		%>	          
-          ['<%=ts.getTen()%>',     <%out.print(new TraSuaDAO().layTongDoanhThuTheoTuan(tuan, thang));%>],
+          ['<%=o.getProductID()%>',     <%out.print(new OrderDAO().layTongDoanhThuTheoTuan(tuan, thang));%>],
           <%}
 		}%>
           

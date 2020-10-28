@@ -20,7 +20,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
         <!-- Bootstrap -->
         <link href="vendors/bootstrap/dist/css/bootstrap.min.css"
               rel="stylesheet">
@@ -88,6 +87,7 @@
                         <li class="divider"></li>
                         <li><a href="Dropdown?chucNang=AllKhachHang">Tất cả</a></li>
                     </ul>
+                    <a href="thongKe/hienthi.jsp"><button class="btn btn-warning" type="button">Thống kê doanh thu</button></a>
                 </div> 
                 <div class="col-md-4">
                     <jsp:include page="search/searchTaikhoan.jsp"></jsp:include>
@@ -156,8 +156,6 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
     </body>
 
@@ -177,10 +175,6 @@
     <script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
     <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
     <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
-
-
-
 </html>

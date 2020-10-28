@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.ConnectDTB;
-import model.TraSua;
+import model.Order;
 
 public class ThongKeDAO {
 
@@ -16,7 +16,7 @@ public class ThongKeDAO {
 
     }
 
-    public Map<String, TraSua> thongKeTheoTuan(String tuan, String text) {
+    public Map<String, Order> thongKeTheoTuan(String tuan, String text) {
         ArrayList<String> list = danhSachKhoangNgayTheoTuan(tuan, text);
         return thongKeTheoKhoanNgay(list.get(0), list.get(1));
     }
@@ -49,42 +49,40 @@ public class ThongKeDAO {
         return list;
     }
 
-    public Map<String, TraSua> thongKeTheoKhoanNgay(String dateStart, String dateEnd) {
-        Map<String, TraSua> map = new HashMap<>();
+    public Map<String, Order> thongKeTheoKhoanNgay(String dateStart, String dateEnd) {
+        Map<String, Order> map = new HashMap<>();
         try {
-            ResultSet rs = new ConnectDTB().chonDuLieu("select * from [dbo].[TraSua] where NgayBanRa>='" + dateStart + "' and NgayBanRa<='" + dateEnd + "'");
+            ResultSet rs = new ConnectDTB().selectData("select * from [dbo].[Order] where DATE>='" + dateStart + "' and DATE<='" + dateEnd + "'");
             while (rs.next()) {
-                String ma = rs.getString(1);
-                String ten = rs.getString(2);
-                String gia = rs.getString(3);
-                String soLuong = rs.getString(4);
-                String doanhThu = rs.getString(5);
-                String ngay = rs.getString(6);
-                map.put(ma, new TraSua(ma, ten, gia, soLuong, doanhThu, ngay));
+                String orderID = rs.getString(1);
+                String customerName = rs.getString(2);
+                String productName = rs.getString(3);
+                String day = rs.getString(4);
+                String totalPrice = rs.getString(5);
+                map.put(orderID, new Order(orderID, customerName, productName, day, totalPrice));
             }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Loi thong ke theo thang");
         }
         return map;
-
     }
 
-    public Map<String, TraSua> thongKeTheoThang(String text) {
+    public Map<String, Order> thongKeTheoThang(String text) {
+        //2020-01
         String year = text.substring(0, text.indexOf("-"));
         String month = text.substring(text.indexOf("-") + 1, text.length());
 
-        Map<String, TraSua> map = new HashMap<>();
+        Map<String, Order> map = new HashMap<>();
         try {
-            ResultSet rs = new ConnectDTB().chonDuLieu("select * from [dbo].[TraSua] where year(NgayBanRa)='" + year + "' and month(NgayBanRa)='" + month + "'");
+            ResultSet rs = new ConnectDTB().selectData("select * from [dbo].[Order] where year(DATE)='" + year + "' and month(DATE)='" + month + "'");
             while (rs.next()) {
-                String ma = rs.getString(1);
-                String ten = rs.getString(2);
-                String gia = rs.getString(3);
-                String soLuong = rs.getString(4);
-                String doanhThu = rs.getString(5);
-                String ngay = rs.getString(6);
-                map.put(ma, new TraSua(ma, ten, gia, soLuong, doanhThu, ngay));
+                String orderID = rs.getString(1);
+                String customerName = rs.getString(2);
+                String productName = rs.getString(3);
+                String day = rs.getString(4);
+                String totalPrice = rs.getString(5);
+                map.put(orderID, new Order(orderID, customerName, productName, day, totalPrice));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +91,7 @@ public class ThongKeDAO {
         return map;
     }
 
-    public Map<String, TraSua> thongKeTheoThangHeThong() {
+    public Map<String, Order> thongKeTheoThangHeThong() {
         Date toDate = new Date(System.currentTimeMillis());
         SimpleDateFormat fomatTime = new SimpleDateFormat("yyyy-MM-dd");
         String date = fomatTime.format(toDate.getTime());
@@ -101,17 +99,16 @@ public class ThongKeDAO {
         String year = date.substring(0, date.indexOf("-"));
         String month = date.substring(date.indexOf("-") + 1, date.lastIndexOf("-"));
 
-        Map<String, TraSua> map = new HashMap<>();
+        Map<String, Order> map = new HashMap<>();
         try {
-            ResultSet rs = new ConnectDTB().chonDuLieu("select * from [dbo].[TraSua] where year(NgayBanRa)='" + year + "' and month(NgayBanRa)='" + month + "'");
+            ResultSet rs = new ConnectDTB().selectData("select * from [dbo].[Order] where year(DATE)='" + year + "' and month(DATE)='" + month + "'");
             while (rs.next()) {
-                String ma = rs.getString(1);
-                String ten = rs.getString(2);
-                String gia = rs.getString(3);
-                String soLuong = rs.getString(4);
-                String doanhThu = rs.getString(5);
-                String ngay = rs.getString(6);
-                map.put(ma, new TraSua(ma, ten, gia, soLuong, doanhThu, ngay));
+                String orderID = rs.getString(1);
+                String customerName = rs.getString(2);
+                String productName = rs.getString(3);
+                String day = rs.getString(4);
+                String totalPrice = rs.getString(5);
+                map.put(orderID, new Order(orderID, customerName, productName, day, totalPrice));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,18 +117,17 @@ public class ThongKeDAO {
         return map;
     }
 
-    public Map<String, TraSua> thongKeTheoNgay(String date) {
-        Map<String, TraSua> map = new HashMap<>();
+    public Map<String, Order> thongKeTheoNgay(String date) {
+        Map<String, Order> map = new HashMap<>();
         try {
-            ResultSet rs = new ConnectDTB().chonDuLieu("select * from [dbo].[TraSua] where NgayBanRa='" + date + "'");
+            ResultSet rs = new ConnectDTB().selectData("select * from [dbo].[Order] where DATE='" + date + "'");
             while (rs.next()) {
-                String ma = rs.getString(1);
-                String ten = rs.getString(2);
-                String gia = rs.getString(3);
-                String soLuong = rs.getString(4);
-                String doanhThu = rs.getString(5);
-                String ngay = rs.getString(6);
-                map.put(ma, new TraSua(ma, ten, gia, soLuong, doanhThu, ngay));
+                String orderID = rs.getString(1);
+                String customerName = rs.getString(2);
+                String productName = rs.getString(3);
+                String day = rs.getString(4);
+                String totalPrice = rs.getString(5);
+                map.put(orderID, new Order(orderID, customerName, productName, day, totalPrice));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -140,22 +136,21 @@ public class ThongKeDAO {
         return map;
     }
 
-    public Map<String, TraSua> thongKeTheoNgayHeThong() {
+    public Map<String, Order> thongKeTheoNgayHeThong() {
         Date toDate = new Date(System.currentTimeMillis());
         SimpleDateFormat fomatTime = new SimpleDateFormat("yyyy-MM-dd");
         String date = fomatTime.format(toDate.getTime());
 
-        Map<String, TraSua> map = new HashMap<>();
+        Map<String, Order> map = new HashMap<>();
         try {
-            ResultSet rs = new ConnectDTB().chonDuLieu("select * from [dbo].[TraSua] where NgayBanRa='" + date + "'");
+            ResultSet rs = new ConnectDTB().selectData("select * from [dbo].[Order] where DATE='" + date + "'");
             while (rs.next()) {
-                String ma = rs.getString(1);
-                String ten = rs.getString(2);
-                String gia = rs.getString(3);
-                String soLuong = rs.getString(4);
-                String doanhThu = rs.getString(5);
-                String ngay = rs.getString(6);
-                map.put(ma, new TraSua(ma, ten, gia, soLuong, doanhThu, ngay));
+                String orderID = rs.getString(1);
+                String customerName = rs.getString(2);
+                String productName = rs.getString(3);
+                String day = rs.getString(4);
+                String totalPrice = rs.getString(5);
+                map.put(orderID, new Order(orderID, customerName, productName, day, totalPrice));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,15 +160,15 @@ public class ThongKeDAO {
     }
 
     public static void main(String[] args) {
-        String ngay = "2017-05-03";
+        String ngay = "	2020-10-16";
         String tuan = "2";
-        String thang = "2017-05";
+        String thang = "2020-10";
         String ngay2 = "2017-06-12";
 
 //		System.out.println(new ThongKeDAO().thongKeTheoNgay(ngay));
 //		System.out.println(new ThongKeDAO().thongKeTheoNgayHeThong());
-        Map<String, TraSua> map = new ThongKeDAO().thongKeTheoKhoanNgay(ngay, ngay2);
-        for (TraSua ts : map.values()) {
+        Map<String, Order> map = new ThongKeDAO().thongKeTheoThang(thang);
+        for (Order ts : map.values()) {
             System.out.println(ts);
         }
 //		System.out.println(new ThongKeDAO().thongKeTheoThang(thang));

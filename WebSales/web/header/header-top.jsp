@@ -12,51 +12,51 @@
         <%KhachHang kh = (KhachHang) session.getAttribute("userlogin"); %>
     </head>
     <body>
-        <nav class="navbar"> 
-            <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="myAccount.jsp">Xin chào,
-      <%  if (kh != null) {
-                                out.print(kh.getTen());
-                            }
-                        %>
-      </a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="contact.jsp">CONTACT US</a></li>
-      <li class="active"><a href="cart.jsp">GIỎ HÀNG</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="register.jsp"><span class="glyphicon glyphicon-user"></span> Đăng kí</a></li>
-      <li><a href="account.jsp"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
-      <li><a href="Login?action=Logout"><span class="glyphicon glyphicon-user"></span> Đăng xuất</a></li>
-    </ul>
-  </div>
-</nav>
-                    
-        <!---->
-        <div class="header-top" style="background-color: #189eff;">
-            <div class="logo">
-                <a href="index.jsp" style="font-size: 55px;color: #fff;">TEKE NOW</a>
+    <nav class="navbar"> 
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="myAccount.jsp">Xin chào,
+                    <%  if (kh != null) {
+                            out.print(kh.getTen());
+                        }
+                    %>
+                </a>
             </div>
-            <div class="header-top-on">
-                <ul class="social-in">
-                    <li><a href="#"><i> </i></a></li>						
-                    <li><a href="#"><i class="ic"> </i></a></li>
-                    <li><a href="#"><i class="ic1"> </i></a></li>
-                    <li><a href="#"><i class="ic2"> </i></a></li>
-                    <li><a href="#"><i class="ic3"> </i></a></li>
-                </ul>
-            </div>
-            <div class="clearfix"> </div>
+            <ul class="nav navbar-nav">
+                <li><a href="contact.jsp">CONTACT US</a></li>
+                <li class="active"><a href="cart.jsp">GIỎ HÀNG</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Page 1-1</a></li>
+                        <li><a href="#">Page 1-2</a></li>
+                        <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Page 2</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="register.jsp"><span class="glyphicon glyphicon-user"></span> Đăng kí</a></li>
+                <li><a href="account.jsp"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+                <li><a href="Login?action=Logout"><span class="glyphicon glyphicon-user"></span> Đăng xuất</a></li>
+            </ul>
         </div>
-    </body>
+    </nav>
+
+    <!---->
+    <div class="header-top" style="background-color: #189eff;">
+        <div class="logo">
+            <a href="index.jsp" style="font-size: 55px;color: #fff;">TEKE NOW</a>
+        </div>
+        <div class="header-top-on">
+            <ul class="social-in">
+                <li><a href="#"><i> </i></a></li>						
+                <li><a href="#"><i class="ic"> </i></a></li>
+                <li><a href="#"><i class="ic1"> </i></a></li>
+                <li><a href="#"><i class="ic2"> </i></a></li>
+                <li><a href="#"><i class="ic3"> </i></a></li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</body>
 </html>

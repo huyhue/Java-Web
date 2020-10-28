@@ -11,5 +11,9 @@
         <action name="hienthi" class="controller.HelloActionSupport" method="hienthi">
             <result name="success">hienthi.jsp</result>
         </action>
+        <action name="dangki" class="controller.DangKiActionSupport">
+            <result name="input">dangki.jsp</result>
+            <result name="success">hienthithongtin.jsp</result>
+        </action>
     </package>
 </struts>

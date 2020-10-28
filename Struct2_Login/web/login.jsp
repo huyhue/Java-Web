@@ -14,8 +14,8 @@
     <body>
         <h1>Login Structs 2</h1>
         <form action="login" method="POST">
-            Username: <input type="text" name="username" value="" /> <br>
-            Password: <input type="password" name="password" value="" /><br>
+            Username: <input type="text" name="username"/> <br>
+            Password: <input type="password" name="password"/><br>
             <input type="submit" value="Login" />
             <input type="reset" value="Reset" />
         </form>

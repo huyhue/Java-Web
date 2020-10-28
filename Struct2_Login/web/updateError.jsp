@@ -1,6 +1,6 @@
 <%-- 
-    Document   : invalid
-    Created on : Oct 22, 2020, 3:16:34 PM
+    Document   : updateError
+    Created on : Oct 28, 2020, 11:35:53 AM
     Author     : ASUS
 --%>
 
@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Invalid Page</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1><font color="red">Invalid username or password!</font></h1>
-        <a href="login.jsp">Click here to try again</a>
+        <h1><font color="red">Update error</font></h1>
+        <a href="">Click here to try again</a>
     </body>
 </html>

@@ -63,7 +63,7 @@ public class RegistrationDAO {
         try {
             con = DBUtil.openConnection();
             if (con != null) {
-                String sql = "Update Registration"+" set password = ?, isAmin = ?"+" Where username = ?";
+                String sql = "Update Registration"+" set password = ?, isAdmin = ?"+" Where username = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, password);
                 stm.setBoolean(2, role);

@@ -21,6 +21,59 @@ public class OrderDAO implements ObjectDAO {
 
     public OrderDAO() {
     }
+    
+    public int layTongDoanhThuTheoNgay(String date) {
+        int sum = 0;
+        for (Order o : mapOrder.values()) {
+            if (o.getDate().equals(date)) {
+                sum += Integer.parseInt(o.getTotalPrice());
+            }
+        }
+        return sum;
+    }
+
+    public int layTongDoanhThuTheoThang(String text) {
+        int sum = 0;
+        Map<String, Order> mapTS = new ThongKeDAO().thongKeTheoThang(text);
+        for (Order o : mapTS.values()) {
+            if (o.getOrderID().equals(mapOrder.get(o.getOrderID()).getOrderID())) {
+                sum += Integer.parseInt(o.getTotalPrice());
+            }
+        }
+        return sum;
+    }
+    
+    public static void main(String[] args) throws Exception {
+        Map<String, Order> mapList = loadById("huyhue");
+        for (Order o : mapList.values()) {
+            System.out.println(o.getProductID());
+            System.out.println(o.getCustomerID());
+        }
+        OrderDAO o = new OrderDAO();
+        System.err.println("Tong: "+o.layTongDoanhThuTheoThang("2020-10"));
+    }
+
+    public int layTongDoanhThuTheoTuan(String tuan, String text) {
+        Map<String, Order> mapTS = new ThongKeDAO().thongKeTheoTuan(tuan, text);
+        int sum = 0;
+        for (Order o : mapTS.values()) {
+            if (o.getOrderID().equals(mapOrder.get(o.getOrderID()).getOrderID())) {
+                sum += Integer.parseInt(o.getTotalPrice());
+            }
+        }
+        return sum;
+    }
+
+    public int layTongDoanhThuTheoKhoangNgay(String dateStart, String dateEnd) {
+        Map<String, Order> mapTS = new ThongKeDAO().thongKeTheoKhoanNgay(dateStart, dateEnd);
+        int sum = 0;
+        for (Order o : mapTS.values()) {
+            if (o.getOrderID().equals(mapOrder.get(o.getOrderID()).getOrderID())) {
+                sum += Integer.parseInt(o.getTotalPrice());
+            }
+        }
+        return sum;
+    }
 
     public static Set<String> getSetDateOrder() {
         Set<String> date = new HashSet<>();
@@ -121,13 +174,7 @@ public class OrderDAO implements ObjectDAO {
             return listOrder;
         }
     }
-    public static void main(String[] args) throws Exception {
-        Map<String, Order> mapList = loadById("huyhue");
-        for (Order o : mapList.values()) {
-            System.out.println(o.getProductID());
-            System.out.println(o.getCustomerID());
-        }
-    }
+    
 
     public boolean edit(Object obj) {
         Order order = (Order) obj;

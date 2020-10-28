@@ -5,7 +5,6 @@ import java.util.Map;
 import sample.registration.RegistrationDAO;
 
 public class LoginAction {
-
     private String username;
     private String password;
     private final String FAIL = "fail";

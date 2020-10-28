@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search</title>
+        <title>Search Page</title>
     </head>
     <body>
         <font color="red">
@@ -56,10 +56,10 @@
                                         </s:url>
                                         <s:a href="%{deleteLink}">Delete</s:a>
                                     </td>
-                                        <td>
-                                            <s:hidden name="lastSearchValue" value="%{searchValue}"/>
-                                            <s:submit value="Update"/>
-                                        </td>
+                                    <td>
+                                        <s:hidden name="lastSearchValue" value="%{searchValue}"/>
+                                        <s:submit value="Update"/>
+                                    </td>
                                 </tr>
                             </s:form>
                         </s:iterator>

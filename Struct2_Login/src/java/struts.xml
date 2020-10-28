@@ -15,12 +15,20 @@
         <action name="searchLikeLastname" class="sample.structs2.SearchLikeLastnameAction">
             <result name="success">search.jsp</result>
         </action>
+        <!--Cập nhật struts.xml với việc gọi lại Action Search thông qua Result Type là redirectAction và sử dụng EL để lấy giá trị lần cuối cùng search truyền thẳng vào chức năng search với parameter trùng với tên parameter hay control trong form search-->
         <action name="deleteRecord" class="sample.structs2.DeleteRecordAction">
             <result name="success" type="redirectAction">
                 <param name="actionName">searchLikeLastname</param>
                 <param name="searchValue">${lastSearchValue}</param>
             </result>
             <result name="fail">deleteError.jsp</result>
+        </action>
+        <action name="updateRecord" class="sample.structs2.UpdateRecordAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">searchLikeLastname</param>
+                <param name="searchValue">${lastSearchValue}</param>
+            </result>
+            <result name="fail">updateError.jsp</result>
         </action>
     </package>
 </struts>

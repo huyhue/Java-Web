@@ -59,6 +59,9 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Order{" + "orderID=" + orderID + ", customerID=" + customerID + ", productID=" + productID + ", date=" + date + ", totalPrice=" + totalPrice + '}';
+    }
 
 }

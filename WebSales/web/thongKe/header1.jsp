@@ -3,7 +3,7 @@
  			<nav class="navbar navbar-inverse">
               <div class="container-fluid">
                 <div class="navbar-header">
-                  <a class="navbar-brand" href="index.jsp">Thống kê</a>
+                  <a class="navbar-brand" href="index1.jsp">Thống kê</a>
                 </div>
                 <ul class="nav navbar-nav">
                   <li ><a href="theongay.jsp">Theo ngày</a></li>

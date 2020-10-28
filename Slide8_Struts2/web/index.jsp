@@ -12,7 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <s:a action="hello">Hello</s:a>
-        <s:a action="hienthi">Hien thi</s:a>
+        <s:a action="hello">Hello</s:a> <br>
+        <s:a action="hienthi">Hien thi</s:a><br>
+        <s:a action="dangki">Dang Ki</s:a><br>
+        <s:a href="dangki.jsp">Dang Ki</s:a><br>
     </body>
 </html>
