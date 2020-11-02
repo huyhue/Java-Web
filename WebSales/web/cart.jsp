@@ -2,7 +2,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.GioHangDAO"%>
 <%@page import="model.Product"%>
-<%@page import="model.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -77,14 +76,24 @@
                 <!-- header-bottom -->
                 <div class="content">
                     <div class="row">
-                        <h2 class="text-center">GIỎ HÀNG (2 sản phẩm)</h2>
-			</div>
-                <% KhachHang kh = (KhachHang) session.getAttribute("userlogin");
-                int sum = 0;
-                String sp = "";
+                        <% KhachHang kh = (KhachHang) session.getAttribute("userlogin");
+                    int sum = 0, sl = 0;
+                    String sp = "";
                     if (kh != null) {
                         ArrayList<Product> gioHang = new GioHangDAO().getGioHang();
                 %>
+                        <h2 class="text-center">GIỎ HÀNG (<% out.print(GioHangDAO.laySoLuongSp());%> sản phẩm)</h2>
+                    </div>
+                    <div class="row">
+                        <a href="XuLyXoaSP?chucNang=DelAll"><button class="btn btn-sm btn-danger" id=""><span class="glyphicon glyphicon-trash"></span>  Xóa tất cả</button></a>
+                    <%if (!GioHangDAO.undo.isEmpty()) { %>
+                    <a href="XuLyXoaSP?chucNang=UndoAll"><button class="btn btn-sm btn-warning" id=""><i class="fa fa-undo" aria-hidden="true"></i>  Undo All</button></a>
+                    <%} %>
+                    <%if (!GioHangDAO.undoGioHang.isEmpty()) { %>
+                    <a href="XuLyXoaSP?chucNang=UndoOne"><button class="btn btn-sm btn-warning" id=""><i class="fa fa-undo" aria-hidden="true"></i>  Undo</button></a>
+                    <%} %>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-8">
                         <table class="table table-hover">
@@ -103,8 +112,8 @@
                                 <%int count = 0;
                                     for (int i = 0; i < gioHang.size(); i++) {
                                         count++;
-                                        sp += gioHang.get(i).getProductName()+", ";
-                                        sum += Integer.parseInt(gioHang.get(i).getPrice())*Integer.parseInt(gioHang.get(i).getSoLuongMua());
+                                        sp += gioHang.get(i).getProductName() + ", ";
+                                        sum += Integer.parseInt(gioHang.get(i).getPrice()) * Integer.parseInt(gioHang.get(i).getSoLuongMua());
                                 %>
                                 <tr>
                                     <th scope="row"><% out.print(count);%></th>
@@ -112,9 +121,8 @@
                                     <td><%out.print(gioHang.get(i).getProductName()); %></td>
                                     <td><%out.print(gioHang.get(i).getPrice()); %></td>
                                     <td><%out.print(gioHang.get(i).getSoLuongMua());%></td>
-
                                     <td>
-                                        <a href="XuLyXoaSP?maSanPham=<%=gioHang.get(i).getProductID()%>">
+                                        <a href="XuLyXoaSP?chucNang=Del&maSanPham=<%=gioHang.get(i).getProductID()%>">
                                             <button type="button" class="btn btn-danger" aria-label="Right Align">
                                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                             </button></a>
@@ -125,8 +133,10 @@
                                             </button></a>
                                     </td>
                                 </tr>
-                                <%}  GioHangDAO.setTongtien(sum+"");GioHangDAO.setSp(sp);
-}%>
+                                <%}
+                                        GioHangDAO.setTongtien(sum + "");
+                                        GioHangDAO.setSp(sp);
+                                    }%>
                             </tbody>
                         </table>
                     </div>
@@ -134,17 +144,17 @@
                         <h3 class="text-center text-danger">Tính tiền</h3>
                         <div class="row">
                             <div class="col-md-3"><h5>Tạm tính</h5></div>
-                        <div class="col text-right"><%out.print(sum);%>đ</div>
+                            <div class="col text-right"><%out.print(sum);%>đ</div>
                         </div>
                         <div class="row">
                             <div class="col-md-4"><h4 class="text-warning">Thành tiền:</h4></div>
                             <div class="col"><h3 class="text-danger text-right"><%out.print(sum);%>đ </h3> </br>
 
                                 <span class="text-right">(Đã bao gồm VAT nếu có)</span>
+                            </div>
                         </div>
-                        </div>
-                        
-                        
+
+
                         <a href="Search?chucNang=OutOrder"><button style="margin-top: 20px;" class="btn btn-sm btn-danger btn-block"><i class="fa fa-users" aria-hidden="true"></i>Tiến hành đặt hành</button></a>
                     </div>
 

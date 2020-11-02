@@ -2,18 +2,66 @@ package dao;
 
 import static dao.ProductDAO.mapProduct;
 import java.util.ArrayList;
+import java.util.Stack;
 import model.Product;
 
 public class GioHangDAO {
 
     public static ArrayList<Product> dsSanPham = new ArrayList<>();
     public static ArrayList<Product> gioHang = new ArrayList<>();
+    public static ArrayList<Product> undo = new ArrayList<>();
+    public static Stack<Product> undoGioHang = new Stack<>();
 
     public GioHangDAO() {
         dsSanPham.removeAll(dsSanPham);
         for (Product sp : mapProduct.values()) {
             dsSanPham.add(new Product(sp.getProductID(), sp.getProductName(), sp.getPrice(), sp.getProducerID(), sp.getImg(), "1"));
         }
+    }
+    
+    public boolean restoreDeleted() {
+        if (!undoGioHang.isEmpty()) {
+            Product p = undoGioHang.pop();
+            System.out.println(p);
+            if (p != null) {
+                gioHang.add(p);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean delAll() {
+        undo.addAll(gioHang);
+        gioHang.removeAll(gioHang);
+        return true;
+    }
+    
+    public boolean undo() {
+        gioHang.addAll(undo);
+        undo.removeAll(undo);
+        return true;
+    }
+    
+    public static Product laySp(String maSanPham) {
+        Product p = new Product();
+        for (int i = 0; i < gioHang.size(); i++) {
+            if (gioHang.get(i).getProductID().equals(maSanPham)) {
+                p = new Product(gioHang.get(i).getProductID(), gioHang.get(i).getProductName(), gioHang.get(i).getPrice(), gioHang.get(i).getProducerID(), gioHang.get(i).getImg(), gioHang.get(i).getSoLuongMua());
+            }
+        }
+        return p;
+    }
+
+    public boolean xoaSanPhamRaKkoiGioHang(String maSanPham) {
+        for (int i = 0; i < gioHang.size(); i++) {
+            if (gioHang.get(i).getProductID().equals(maSanPham)) {
+                gioHang.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public static String getTotalProductOrder() {
@@ -58,6 +106,13 @@ public class GioHangDAO {
         }
         return false;
     }
+    public static int laySoLuongSp() {
+        int sluong = 0;
+        for (int i = 0; i < gioHang.size(); i++) {
+            sluong += Integer.parseInt(gioHang.get(i).getSoLuongMua());
+        }
+        return sluong;
+    }
 
     public boolean themVaoGioHang(String maSanPham) {
         boolean kiemTra = kiemTraSanPhamCoTrongGioHangChua(maSanPham);
@@ -74,16 +129,6 @@ public class GioHangDAO {
                     gioHang.get(i).setSoLuongMua(Integer.parseInt(gioHang.get(i).getSoLuongMua()) + 1 + "");
                     index = i;
                 }
-            }
-        }
-        return false;
-    }
-
-    public boolean xoaSanPhamRaKkoiGioHang(String maSanPham) {
-        for (int i = 0; i < gioHang.size(); i++) {
-            if (gioHang.get(i).getProductID().equals(maSanPham)) {
-                gioHang.remove(i);
-                return true;
             }
         }
         return false;

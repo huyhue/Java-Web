@@ -184,13 +184,13 @@ public class KhachHangDAO implements ObjectDAO {
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("shopphoneltw@gmail.com", "abcdabcd");
+                return new PasswordAuthentication("huytpgde140306@fpt.edu.vn", "01662529468");
             }
         });
         try {
             Message message = new MimeMessage(session);
             message.setHeader("Content-Type", "text/plain; charset=UTF-8");
-            message.setFrom(new InternetAddress("shopphoneltw@gmail.com"));
+            message.setFrom(new InternetAddress("huytpgde140306@fpt.edu.vn"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
             message.setText(text);
@@ -205,7 +205,7 @@ public class KhachHangDAO implements ObjectDAO {
         KhachHang kh = mapKhachHang.get(userName);
         if (kh != null) {
             sendMail(email, "passWord recorvery", kh.getMatKhau());
-//            System.err.println(kh.getMatKhau());
+            System.err.println(kh.getMatKhau());
             return true;
         } else {
             System.out.println("No account");
@@ -214,7 +214,7 @@ public class KhachHangDAO implements ObjectDAO {
     }
 
     public static void main(String[] args) {
-//        System.out.println(new KhachHangDAO().passwordRecovery("huyhue", "tpgiahuy5@gmail.com"));
+        System.out.println(new KhachHangDAO().passwordRecovery("huyhue", "tpgiahuy5@gmail.com"));
 //        System.out.println(loadData());
     }
 }

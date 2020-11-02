@@ -157,23 +157,26 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Gender:</label>
                                 <div class="col-sm-10">
-                                    <input class="form-check-input" type="radio" name="gioiTinh" id="inlineRadio1"  value="<%= kh.getGioiTinh()%>">
+                                    <input class="form-check-input" type="radio" name="gioiTinh" id="inlineRadio1" <%= kh.getGioiTinh().equals("nam")? "checked" : "" %> value="nam">
                                 <label class="form-check-label" for="inlineRadio1">Male</label>
-                                <input class="form-check-input" type="radio" name="gioiTinh" id="inlineRadio2" value="<%= kh.getGioiTinh()%>">
-                                <label class="form-check-label" for="inlineRadio2" >Female</label>
+                                    <input class="form-check-input" type="radio" name="gioiTinh" id="inlineRadio2" <%= kh.getGioiTinh().equals("nu")? "checked" : "" %> value="nu">
+                                <label class="form-check-label" for="inlineRadio2">Female</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Birthday:</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" id="date"   value="<%= kh.getNgaySinh()%>" name="ngaySinh" placeholder="Enter date">
+                                    <input type="date" class="form-control" id="date" value="<%= kh.getNgaySinh()%>" name="ngaySinh" placeholder="Enter date">
                                     <p id="error_date"></p>
                                 </div>
                             </div>
                             <div class="form-group" >
                                 <label class=" control-label col-sm-2" for="e">Nhà cung cấp:</label>
-                                <div class="col-sm-10">
-                                    <input type="checkbox" class="form-check-input" name="chkOwner" value="<%= kh.getRole()%>" id="e">
+                                <div class="col-sm-10"> 
+                                    <%  String check=""; if ( kh.getRole().equals("owner")) {
+                                        check="checked";}%>
+                                    <input type="checkbox" class="form-check-input" name="chkOwner" value="<%= kh.getRole()%>" <%= check%> id="e">
+ 
                                 </div>
                             </div>
                             <div class="form-group">

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import dao.KhachHangDAO;
 import javax.servlet.RequestDispatcher;
 import model.KhachHang;
+import model.VerifyRecaptcha;
 
 @WebServlet("/Login")
 public class LoginController extends HttpServlet {
@@ -41,10 +42,10 @@ public class LoginController extends HttpServlet {
                 KhachHang kh = KhachHangDAO.mapKhachHang.get(userName);
                 session.setAttribute("userlogin", kh);
                 response.sendRedirect("index.jsp");
-            }else{
+            } else {
                 request.setAttribute("message", "Invalid username or password");
-                    RequestDispatcher rd = request.getRequestDispatcher("account.jsp");
-                    rd.forward(request, response);
+                RequestDispatcher rd = request.getRequestDispatcher("account.jsp");
+                rd.forward(request, response);
             }
         } else if (action.equals("Resgister")) {
             String taiKhoan = request.getParameter("taiKhoan");
@@ -52,11 +53,14 @@ public class LoginController extends HttpServlet {
             String tenKhachHang = request.getParameter("ten");
             String gioiTinh = request.getParameter("gioiTinh");
             String soDienThoai = request.getParameter("soDienThoai");
-            String email = request.getParameter("email"); 
+            String email = request.getParameter("email");
             String ngaySinh = request.getParameter("ngaySinh");
             String diaChi = request.getParameter("diaChi");
             String soLuongMua = request.getParameter("soLuongMua"); //chua co thong tin
-            String role = request.getParameter("chkOwner"); 
+            String role = request.getParameter("chkOwner");
+            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+//		System.out.println(gRecaptchaResponse);
+            boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
             String quyen = "";
             if (role != null) {
                 quyen = "owner";

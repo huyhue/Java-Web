@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 30, 2020 11:10:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="edu.poly.entities.Classes" table="Classes" schema="dbo" catalog="tekeWeb" optimistic-lock="version">
+        <id name="classId" type="string">
+            <column name="ClassId" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="Name" />
+        </property>
+        <set name="studentses" table="Students" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ClassId" length="5" />
+            </key>
+            <one-to-many class="edu.poly.entities.Students" />
+        </set>
+    </class>
+</hibernate-mapping>

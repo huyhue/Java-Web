@@ -18,6 +18,7 @@ import model.Product;
 
 public class ProductDAO implements ObjectDAO {
 
+//    public static Map<String, Product> mapProduct = getLoadProductDTB();
     public static Map<String, Product> mapProduct = getLoadProductDTB();
     public static Map<String, Product> mapUndo = new HashMap<>();
     public static Map<String, Product> mapProductOrder = new HashMap<>();

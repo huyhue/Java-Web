@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -122,6 +123,7 @@
 
     </head>
     <body> 
+
         <!--header-->
         <div class="container">
             <!-- header-top -->
@@ -130,88 +132,105 @@
                 <!-- header-bottom -->
             <jsp:include page="header/header-bottom.jsp"></jsp:include>
                 <!-- header-bottom -->
-                <div class="content">
-                    <div class="account-in register-top">
-                        <h2>Register</h2>
-                        <form class="form-horizontal" id="myForm" action="Login?action=Resgister" method="post">
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Username:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="taiKhoan" placeholder="Enter username">
-                                    <p id="error_pass"></p>
-                                </div>
+                <a href="language?lang=English">Tiếng Anh |</a>
+                <a href="language?lang=Vietnam"> Tiếng Việt</a>
+            <c:if test="${requestScope.lang=='English' }">
+                <fmt:setLocale value="en_US" scope="page"/>
+            </c:if>
+
+            <c:if test="${requestScope.lang=='Vietnam' }">
+                <fmt:setLocale value="vi_VN" scope="page"/>
+            </c:if>
+            <fmt:setBundle var = "b" basename ="controller/myapp" scope="session"/>
+            <div class="content">
+                <div class="account-in register-top">
+                    <h2><fmt:message key="login.title" bundle="${b}"/></h2>
+
+                    <form class="form-horizontal" id="myForm" action="Login?action=Resgister" method="post">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"><fmt:message key="login.username" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="taiKhoan" placeholder="Enter username">
+                                <p id="error_pass"></p>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Password:</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="matKhau" placeholder="Enter password">
-                                    <p id="error_pass"></p>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"><fmt:message key="login.password" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="matKhau" placeholder="Enter password">
+                                <p id="error_pass"></p>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="email">Email:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
-                                    <p id="error_email"></p>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email"><fmt:message key="login.email" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter email">
+                                <p id="error_email"></p>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Phone number:</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="soDienThoai" id="phone" placeholder="Enter phone number">
-                                    <p id="error_phone"></p>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"><fmt:message key="login.phone" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" name="soDienThoai" id="phone" placeholder="Enter phone number">
+                                <p id="error_phone"></p>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Gender:</label>
-                                <div class="col-sm-10">
-                                    <input class="form-check-input" type="radio" name="gioiTinh" id="inlineRadio1" value="nam">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"><fmt:message key="login.gender" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input class="form-check-input" type="radio" name="gioiTinh" id="inlineRadio1" value="nam">
                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                                 <input class="form-check-input" type="radio" name="gioiTinh" id="inlineRadio2" value="nu">
                                 <label class="form-check-label" for="inlineRadio2">Female</label>
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Birthday:</label>
-                                <div class="col-sm-10">
-                                    <input type="date" class="form-control" id="date" name="ngaySinh" placeholder="Enter date">
-                                    <p id="error_date"></p>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"><fmt:message key="login.birth" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" id="date" name="ngaySinh" placeholder="Enter date">
+                                <p id="error_date"></p>
                             </div>
-                            <div class="form-group" >
-                                <label class=" control-label col-sm-2" for="e">Nhà cung cấp:</label>
-                                <div class="col-sm-10">
-                                    <input type="checkbox" class="form-check-input" name="chkOwner" value="OWNER" id="e">
-                                </div>
+                        </div>
+                        <div class="form-group" >
+                            <label class=" control-label col-sm-2" for="e"><fmt:message key="login.owner" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input type="checkbox" class="form-check-input" name="chkOwner" value="OWNER" id="e">
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Name:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="ten" placeholder="Enter name">
-                                    <p id="error_date"></p>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"><fmt:message key="login.name" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="ten" placeholder="Enter name">
+                                <p id="error_date"></p>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Address:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="diaChi" placeholder="Enter address">
-                                    <p id="error_date"></p>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"><fmt:message key="login.address" bundle="${b}"/>:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="diaChi" placeholder="Enter address">
+                                <p id="error_date"></p>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-block btn-danger">Resgister</button>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Xác minh:</label>
+                            <div class="col-sm-10 g-recaptcha" data-sitekey="6LdXdiMUAAAAAKirZUzx5jMHJ-Gs65uX-Kw5K7YF">
                             </div>
-                        </form>
-                    </div>	
-                </div>
-                <!---->
-                <footer>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-block btn-danger"><fmt:message key="login.submit" bundle="${b}"/></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>	
+            </div>
+            <!---->
+            <footer>
                 <jsp:include page="footer/footerlevel1.jsp"></jsp:include>
             </footer> 
         </div>
 
         <!---->
     </body>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </html>

@@ -13,8 +13,8 @@
                   <li><a href="hienthi.jsp">Bảng dữ liệu</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Đăng xuất</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> ADMIN</a></li>
+                  <li><a href="../index.jsp"><span class="glyphicon glyphicon-log-in"></span> Back</a></li>
                 </ul>
               </div>
             </nav>

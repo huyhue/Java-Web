@@ -1,3 +1,4 @@
+<%@page import="dao.UndoDAO"%>
 <%@page import="dao.OrderDAO"%>
 <%@page import="model.Order"%>
 <%@page import="model.KhachHang"%>
@@ -84,6 +85,13 @@
             </div>
             <div class="row">
                 <center>
+                    <a href="Product?chucNang=DelAll"><button class="btn btn-sm btn-info" id=""><span class="glyphicon glyphicon-trash"></span>  Xóa tất cả</button></a>
+                    <%if (!ProductDAO.mapUndo.isEmpty()) { %>
+                    <a href="Product?chucNang=UndoAll"><button class="btn btn-sm btn-success" id=""><i class="fa fa-undo" aria-hidden="true"></i>  Undo All</button></a>
+                    <%} %>
+                    <%if (!UndoDAO.undoProduct.isEmpty()) { %>
+                    <a href="Product?chucNang=UndoOne"><button class="btn btn-sm btn-success" id=""><i class="fa fa-undo" aria-hidden="true"></i>  Undo</button></a>
+                    <%} %>
                     <a href="product/product.jsp?chucNang=Add"><button class="btn btn-sm btn-success" id="Them"><span class="glyphicon glyphicon-plus"></span>  Thêm sản phẩm</button></a>
                 </center>
 

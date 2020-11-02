@@ -164,7 +164,7 @@
                         <div class="col-sm-10">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="" name="image" placeholder="Anhr sản phẩm" id="image">
+                                    <input type="text" class="form-control" value="" name="image" placeholder="Ảnh sản phẩm" id="image">
                                 </div>
                                 <div class="col-sm-2">
                                     <p id="icon-cost"></p>
