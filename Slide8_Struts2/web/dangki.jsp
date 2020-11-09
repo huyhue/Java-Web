@@ -13,6 +13,7 @@
     </head>
     <body>
         <s:form method="post" action="dangki">
+            <input type="text" class="form-control" name="tk.username" >
             <s:textfield label="Username" name="tk.username"></s:textfield><br>
             <s:password label="Password" name="tk.password"></s:password><br>
             <s:textfield label="Ho ten" name="tk.hoten"></s:textfield><br>

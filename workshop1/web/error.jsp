@@ -21,7 +21,7 @@
             <div class="alert alert-danger" role="alert">
                 Your enter strong.
             </div>
-            Click <a href="magaine.jsp">here</a> to try again! <br/>
+            Click <a href="AddContact.jsp">here</a> to try again! <br/>
         </div>
     </body>
 </html>

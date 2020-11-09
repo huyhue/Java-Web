@@ -1,0 +1,33 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="" class="edu.fud.structs2.EditContactAction" method="display">
+            <result name="none">AddContact.jsp</result>
+        </action>
+        <action name="addContact" class="edu.fud.structs2.AddContactAction">
+            <result name="input">AddContact.jsp</result>
+            <result name="success">ListContacts.jsp</result>
+            <result name="error" type="redirect">error.jsp</result>
+        </action>
+        <action name="addGroup" class="edu.fud.structs2.AddGroupAction">
+            <result name="success">ListGroups.jsp</result>
+            <result name="error" type="redirect">error.jsp</result>
+        </action>
+        <action name="deleteRecord" class="edu.fud.structs2.DeleteContactAction">
+            <result name="success">ListContacts.jsp</result>
+            <result name="error" type="redirect">error.jsp</result>
+        </action>
+        <action name="edit" class="edu.fud.structs2.EditContactAction">
+            <result name="success">EditContact.jsp</result>
+        </action>
+        <action name="updateContact" class="edu.fud.structs2.UpdateContactAction">
+            <result name="input">EditContact.jsp</result>
+            <result name="success">ListContacts.jsp</result>
+            <result name="error" type="redirect">error.jsp</result>
+        </action>
+    </package>
+</struts>

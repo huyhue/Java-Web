@@ -4,11 +4,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search Page</title>
+        <title>Welcome Page</title>
     </head>
     <body>
-        <font color="red">
-        Welcome, <s:property value="%{#session.USERNAME}" />
+         <font color="red">
+        Welcome, <s:property value="%{#session.USERNAME}"/>
         </font>
         <h1>Search Page!!!</h1>
         <s:form action="searchLikeLastname">
@@ -70,5 +70,7 @@
                 <h2>No record is matched!!!</h2>
             </s:if>
         </s:if>
+
+        
     </body>
 </html>

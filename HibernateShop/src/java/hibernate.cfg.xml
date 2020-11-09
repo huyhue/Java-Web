@@ -45,5 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:sqlserver://Localhost:1433;databaseName=tekeWeb</property>
     <property name="hibernate.connection.username">sa</property>
     <property name="hibernate.connection.password">123456</property>
+    <mapping class="edu.poly.entities.Product"/>
+    <mapping class="edu.poly.entities.Category"/>
   </session-factory>
 </hibernate-configuration>
