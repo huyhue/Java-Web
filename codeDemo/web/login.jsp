@@ -32,9 +32,12 @@
 		  <h3>Xin chào các bạn!</h3>
 		  <p>Tron video này,mình xin giới thiệu về cách đăng nhập bằng các tài khoản mạng xã hội ( face,google+),và cách chèn bình luận bằng face vào trong trang web của mình.</p>
 			<p>Nếu bài hướng dẫn có ích thì bạn nhớ <strong>like ,share và đăng ký</strong> kênh youtube của mình để cập nhật những video mới khác nhé.Xin cảm ơn các bạn</p>
-		</div>
-		<div id="status" style="color:red"> 
-		</div>
+	 <%
+            String message = (String) request.getAttribute("message");
+        %>
+        <h3>Message Facebook is: <%= message%></h3>	
+        </div>
+		<div id="status" style="color:red"> </div>
 		<!-- form đăng nhập -->
 		<div id="id01" class="modal fade" role="dialog">
 		  <div class="modal-dialog">

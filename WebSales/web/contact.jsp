@@ -106,14 +106,10 @@
                         </div>
                         <div class="clearfix"> </div>
                     </div>
-
                 </div>
-                <!---->
                 <footer>
                 <jsp:include page="footer/footerlevel1.jsp"></jsp:include>
             </footer> 
         </div>
-
-        <!---->
     </body>
 </html>
