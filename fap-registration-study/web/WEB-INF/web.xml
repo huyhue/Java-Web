@@ -114,6 +114,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>student/chooseCampus.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

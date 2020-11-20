@@ -11,9 +11,6 @@ import dao.KhachHangDAO;
 import dao.OrderDAO;
 import dao.ProductDAO;
 import model.KhachHang;
-import model.Order;
-import model.Product;
-
 
 @WebServlet("/Dropdown")
 public class DropdownController extends HttpServlet {

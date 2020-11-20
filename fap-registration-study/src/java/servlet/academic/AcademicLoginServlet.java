@@ -3,17 +3,14 @@ package servlet.academic;
 import dal.AcademicStaffDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Thaycacac
- */
+@WebServlet("/AcademicLoginServlet")
 public class AcademicLoginServlet extends HttpServlet {
-    
      @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,12 +29,10 @@ public class AcademicLoginServlet extends HttpServlet {
             request.setAttribute("errorLogin", "Wrong username or password!!!");
             request.getRequestDispatcher("/academic/login.jsp").forward(request, response);
         }
-
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }
